@@ -2,121 +2,331 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Esti Belle — Luxury Evening Wear</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-:root{
-  --ivory:#FAF7F2;--gold:#C9A96E;--gold-d:#A07840;
-  --dark:#1C1612;--dark2:#120E0A;--muted:#8C8070;
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+:root {
+  --ivory:#FAF7F2; --gold:#C9A96E; --gold-d:#A07840;
+  --dark:#1C1612; --dark2:#120E0A; --muted:#8C8070;
 }
-body{background:var(--ivory);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;font-size:14px;line-height:1.7;color:var(--dark);overflow-x:hidden}
+body {
+  background:var(--ivory);
+  font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:14px; line-height:1.7; color:var(--dark);
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
 
-/* NAV */
-nav{position:fixed;inset-block-start:0;inset-inline:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(250,247,242,0.97);border-bottom:0.5px solid rgba(201,169,110,0.22)}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--dark);font-size:10px;letter-spacing:.22em;text-transform:uppercase;transition:color .3s}
-.nav-links a:hover{color:var(--gold)}
-.nav-logo{font-family:Georgia,serif;font-size:22px;font-style:italic;letter-spacing:.06em;color:var(--dark)}
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  height:56px; padding:0 24px;
+  background:rgba(250,247,242,0.97);
+  border-bottom:.5px solid rgba(201,169,110,.22);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+}
+.nav-logo {
+  position:absolute; left:50%; transform:translateX(-50%);
+  font-family:Georgia,serif; font-size:21px; font-style:italic;
+  letter-spacing:.06em; color:var(--dark); white-space:nowrap;
+}
+.nav-links { display:flex; gap:28px; list-style:none; }
+.nav-links a {
+  text-decoration:none; color:var(--dark);
+  font-size:10px; letter-spacing:.22em; text-transform:uppercase; transition:color .3s;
+}
+.nav-links a:hover { color:var(--gold); }
+.nav-left { margin-right:auto; }
+.nav-right { margin-left:auto; }
 
-/* HERO */
-.hero{min-height:100vh;background:var(--dark);display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;overflow:hidden}
-.hero-grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(201,169,110,.04) 59px,rgba(201,169,110,.04) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(201,169,110,.04) 59px,rgba(201,169,110,.04) 60px)}
-.hero-c{position:relative;z-index:1;max-width:740px}
-.eyebrow{display:block;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}
-h1{font-family:Georgia,'Garamond',serif;font-size:clamp(52px,9vw,96px);font-style:italic;font-weight:normal;line-height:1.0;color:var(--ivory);margin-bottom:32px}
-.divider{width:48px;height:1px;background:var(--gold);margin:0 auto 28px}
-.hero-sub{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(250,247,242,.45);margin-bottom:56px}
-.btn{display:inline-block;padding:14px 44px;border:1px solid var(--gold);color:var(--gold);font-size:10px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;background:transparent;font-family:inherit;transition:all .3s}
-.btn:hover{background:var(--gold);color:var(--dark)}
+/* Burger (mobile only) */
+.burger {
+  display:none; flex-direction:column; gap:5px;
+  cursor:pointer; background:none; border:none;
+  padding:8px; touch-action:manipulation; z-index:201;
+  -webkit-tap-highlight-color:transparent;
+}
+.burger span {
+  display:block; width:24px; height:1.5px;
+  background:var(--dark); transition:all .3s ease; transform-origin:center;
+}
+.burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
 
-/* TICKER */
-.ticker{background:var(--gold);padding:13px 0;overflow:hidden;white-space:nowrap}
-.ticker-track{display:inline-flex;animation:scroll 26s linear infinite}
-.ti{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dark);padding:0 28px}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* Full-screen mobile overlay */
+.mob-overlay {
+  display:none; position:fixed; inset:0; z-index:190;
+  background:var(--dark);
+  flex-direction:column; align-items:center; justify-content:center; gap:36px;
+}
+.mob-overlay.open { display:flex; }
+.mob-close {
+  position:absolute; top:18px; right:20px;
+  background:none; border:none; color:var(--gold);
+  font-size:26px; cursor:pointer; padding:8px;
+  touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+}
+.mob-overlay a {
+  text-decoration:none;
+  font-family:Georgia,serif; font-size:30px; font-style:italic;
+  font-weight:normal; color:var(--ivory); letter-spacing:.04em; transition:color .3s;
+}
+.mob-overlay a:active { color:var(--gold); }
 
-/* SECTIONS */
-.sec{padding:100px 48px}
-.sl{display:block;font-size:10px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-h2{font-family:Georgia,'Garamond',serif;font-size:clamp(34px,5vw,58px);font-style:italic;font-weight:normal;line-height:1.1;color:var(--dark);margin-bottom:24px}
-h3{font-family:Georgia,serif;font-size:18px;font-style:italic;font-weight:normal;margin-bottom:12px}
+/* ── HERO ── */
+.hero {
+  min-height:100svh;
+  background:var(--dark);
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:80px 24px 56px; position:relative; overflow:hidden;
+}
+.hero-grid {
+  position:absolute; inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(201,169,110,.04) 59px,rgba(201,169,110,.04) 60px),
+    repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(201,169,110,.04) 59px,rgba(201,169,110,.04) 60px);
+}
+.hero-c { position:relative; z-index:1; max-width:680px; width:100%; }
+.eyebrow {
+  display:block; font-size:9px; letter-spacing:.32em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:22px;
+}
+h1 {
+  font-family:Georgia,'Garamond',serif;
+  font-size:clamp(42px,11vw,96px);
+  font-style:italic; font-weight:normal; line-height:1.0;
+  color:var(--ivory); margin-bottom:26px;
+}
+.divider { width:40px; height:1px; background:var(--gold); margin:0 auto 22px; }
+.hero-sub {
+  font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(250,247,242,.42); margin-bottom:44px;
+}
+.btn {
+  display:inline-block; padding:14px 40px;
+  border:1px solid var(--gold); color:var(--gold);
+  font-size:9px; letter-spacing:.28em; text-transform:uppercase;
+  cursor:pointer; background:transparent; font-family:inherit;
+  transition:all .3s; touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:hover, .btn:active { background:var(--gold); color:var(--dark); }
 
-/* STORY */
-.story-in{max-width:680px;margin:0 auto;text-align:center}
-.story-in p{font-size:15px;line-height:1.95;color:var(--muted)}
+/* ── TICKER ── */
+.ticker { background:var(--gold); padding:12px 0; overflow:hidden; white-space:nowrap; }
+.ticker-track { display:inline-flex; animation:scroll 26s linear infinite; }
+.ti { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--dark); padding:0 22px; }
+@keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-/* COLLECTION */
-.coll{background:#F2EDE5}
-.coll-head{text-align:center;margin-bottom:60px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto}
-.card{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer}
-.card-bg{position:absolute;inset:0;transition:transform .65s ease}
-.card:hover .card-bg{transform:scale(1.05)}
-.card-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.08) 48%,transparent 72%);z-index:1}
-.card-info{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:24px;text-align:center}
-.dn{display:block;font-family:Georgia,serif;font-size:22px;font-style:italic;font-weight:normal;color:#FAF7F2;margin-bottom:4px}
-.ds{display:block;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.dcta{display:block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,247,242,.65);border-bottom:.5px solid rgba(250,247,242,.3);padding-bottom:2px;width:fit-content;margin:0 auto;opacity:0;transform:translateY(6px);transition:all .35s}
-.card:hover .dcta{opacity:1;transform:translateY(0)}
+/* ── SHARED ── */
+.sec { padding:80px 40px; }
+.sl { display:block; font-size:9px; letter-spacing:.36em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+h2 {
+  font-family:Georgia,'Garamond',serif;
+  font-size:clamp(28px,5vw,56px);
+  font-style:italic; font-weight:normal; line-height:1.1;
+  color:var(--dark); margin-bottom:20px;
+}
+h3 { font-family:Georgia,serif; font-size:17px; font-style:italic; font-weight:normal; margin-bottom:10px; }
 
-/* IMAGE PLACEHOLDER LABEL */
-.ph-label{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:3;background:rgba(201,169,110,.18);border:.5px solid rgba(201,169,110,.4);padding:4px 12px;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);white-space:nowrap;pointer-events:none}
+/* ── STORY ── */
+.story-in { max-width:660px; margin:0 auto; text-align:center; }
+.story-in p { font-size:15px; line-height:1.95; color:var(--muted); }
 
-/* PILLARS */
-.pil{background:var(--dark)}
-.pil h2{color:var(--ivory)}
-.pil-head{text-align:center}
-.pil-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;max-width:880px;margin:64px auto 0}
-.pillar{text-align:center}
-.pil-icon{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border:.5px solid rgba(201,169,110,.4);font-size:18px;color:var(--gold);margin-bottom:20px}
-.pillar h3{color:var(--ivory)}
-.pillar p{font-size:13px;color:rgba(250,247,242,.42);line-height:1.85;max-width:220px;margin:0 auto}
+/* ── COLLECTION ── */
+.coll { background:#F2EDE5; }
+.coll-head { text-align:center; margin-bottom:48px; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:1100px; margin:0 auto; }
+.card { position:relative; aspect-ratio:3/4; overflow:hidden; cursor:pointer; }
+.card-bg {
+  position:absolute; inset:0;
+  background-size:cover; background-position:center top; background-repeat:no-repeat;
+  transition:transform .65s ease;
+}
+.card:hover .card-bg { transform:scale(1.05); }
+.card-ov {
+  position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.08) 45%,transparent 68%);
+  z-index:1;
+}
+.card-info { position:absolute; bottom:0; left:0; right:0; z-index:2; padding:18px 14px; text-align:center; }
+.dn { display:block; font-family:Georgia,serif; font-size:18px; font-style:italic; font-weight:normal; color:#FAF7F2; margin-bottom:3px; }
+.ds { display:block; font-size:8px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+.dcta {
+  display:block; font-size:8px; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(250,247,242,.65); border-bottom:.5px solid rgba(250,247,242,.3);
+  padding-bottom:2px; width:fit-content; margin:0 auto;
+  opacity:0; transform:translateY(6px); transition:all .35s;
+}
+.card:hover .dcta { opacity:1; transform:translateY(0); }
 
-/* TESTIMONIALS */
-.testi{background:#EDE6DC}
-.testi-head{text-align:center;margin-bottom:60px}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1000px;margin:0 auto}
-.tcard{border:.5px solid rgba(201,169,110,.38);padding:40px 28px 32px;background:rgba(250,247,242,.45);position:relative}
-.qm{font-family:Georgia,serif;font-size:72px;color:rgba(201,169,110,.32);line-height:.6;display:block;margin-bottom:20px}
-.tcard p{font-family:Georgia,serif;font-size:14px;font-style:italic;line-height:1.85;color:var(--dark);margin-bottom:20px}
-.tname{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block}
+/* ── PILLARS ── */
+.pil { background:var(--dark); }
+.pil h2 { color:var(--ivory); }
+.pil-head { text-align:center; }
+.pil-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; max-width:880px; margin:56px auto 0; }
+.pillar { text-align:center; }
+.pil-icon {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:50px; height:50px; border:.5px solid rgba(201,169,110,.4);
+  font-size:18px; color:var(--gold); margin-bottom:18px;
+}
+.pillar h3 { color:var(--ivory); }
+.pillar p { font-size:13px; color:rgba(250,247,242,.42); line-height:1.85; max-width:220px; margin:0 auto; }
 
-/* NEWSLETTER */
-.nl{background:var(--dark);text-align:center}
-.nl h2{color:var(--ivory)}
-.nl-sub{font-size:13px;color:rgba(250,247,242,.42);margin-bottom:48px}
-.nl-form{display:flex;max-width:440px;margin:0 auto;border:.5px solid rgba(201,169,110,.38)}
-.nl-input{flex:1;background:transparent;border:none;padding:15px 20px;font-size:12px;color:var(--ivory);outline:none;font-family:inherit;letter-spacing:.05em}
-.nl-input::placeholder{color:rgba(250,247,242,.25)}
-.nl-btn{background:var(--gold);border:none;padding:15px 22px;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--dark);cursor:pointer;font-family:inherit;font-weight:500;transition:background .3s;white-space:nowrap}
-.nl-btn:hover{background:#A07840}
+/* ── TESTIMONIALS ── */
+.testi { background:#EDE6DC; }
+.testi-head { text-align:center; margin-bottom:48px; }
+.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; max-width:1000px; margin:0 auto; }
+.tcard { border:.5px solid rgba(201,169,110,.38); padding:36px 24px 28px; background:rgba(250,247,242,.45); }
+.qm { font-family:Georgia,serif; font-size:60px; color:rgba(201,169,110,.3); line-height:.6; display:block; margin-bottom:16px; }
+.tcard p { font-family:Georgia,serif; font-size:13px; font-style:italic; line-height:1.85; color:var(--dark); margin-bottom:16px; }
+.tname { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); display:block; }
 
-/* FOOTER */
-footer{background:var(--dark2);padding:52px 48px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
-.f-logo{font-family:Georgia,serif;font-size:26px;font-style:italic;color:var(--ivory);font-weight:normal}
-.f-line{width:32px;height:.5px;background:rgba(201,169,110,.32)}
-.f-nav{display:flex;gap:28px;list-style:none;flex-wrap:wrap;justify-content:center}
-.f-nav a{text-decoration:none;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,247,242,.32);transition:color .3s}
-.f-nav a:hover{color:var(--gold)}
-.f-copy{font-size:10px;color:rgba(250,247,242,.18);letter-spacing:.08em}
+/* ── NEWSLETTER ── */
+.nl { background:var(--dark); text-align:center; }
+.nl h2 { color:var(--ivory); }
+.nl-sub { font-size:13px; color:rgba(250,247,242,.42); margin-bottom:40px; }
+.nl-form { display:flex; max-width:440px; margin:0 auto; border:.5px solid rgba(201,169,110,.38); }
+.nl-input {
+  flex:1; background:transparent; border:none; padding:15px 18px;
+  font-size:12px; color:var(--ivory); outline:none; font-family:inherit;
+  letter-spacing:.05em; min-width:0;
+}
+.nl-input::placeholder { color:rgba(250,247,242,.25); }
+.nl-btn {
+  background:var(--gold); border:none; padding:15px 20px;
+  font-size:9px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--dark); cursor:pointer; font-family:inherit;
+  font-weight:500; transition:background .3s; white-space:nowrap;
+  touch-action:manipulation;
+}
+.nl-btn:hover { background:#A07840; }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--dark2); padding:48px 24px;
+  display:flex; flex-direction:column; align-items:center; gap:18px; text-align:center;
+}
+.f-logo { font-family:Georgia,serif; font-size:24px; font-style:italic; color:var(--ivory); font-weight:normal; }
+.f-line { width:28px; height:.5px; background:rgba(201,169,110,.3); }
+.f-nav { display:flex; gap:24px; list-style:none; flex-wrap:wrap; justify-content:center; }
+.f-nav a { text-decoration:none; font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:rgba(250,247,242,.3); transition:color .3s; }
+.f-nav a:hover { color:var(--gold); }
+.f-copy { font-size:10px; color:rgba(250,247,242,.16); letter-spacing:.06em; }
+
+/* ══════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════ */
+
+/* Tablet ≤ 1024px */
+@media(max-width:1024px){
+  .sec { padding:80px 32px; }
+  .grid { grid-template-columns:repeat(2,1fr); gap:12px; }
+  .pil-grid { gap:28px; }
+  .testi-grid { grid-template-columns:repeat(2,1fr); }
+}
+
+/* Mobile ≤ 768px */
+@media(max-width:768px){
+  /* Nav */
+  .nav-links { display:none; }
+  .burger { display:flex; }
+
+  /* Hero */
+  .hero { padding:80px 20px 48px; }
+  .eyebrow { font-size:8px; letter-spacing:.2em; margin-bottom:18px; }
+  h1 { font-size:clamp(38px,12vw,60px); margin-bottom:20px; }
+  .hero-sub { font-size:9px; letter-spacing:.14em; margin-bottom:36px; }
+  .btn { padding:13px 30px; font-size:9px; letter-spacing:.22em; }
+
+  /* Sections */
+  .sec { padding:56px 18px; }
+  h2 { font-size:clamp(26px,8vw,40px); }
+
+  /* Story */
+  .story-in p { font-size:14px; line-height:1.85; }
+
+  /* Collection — 2 col on mobile */
+  .coll-head { margin-bottom:32px; }
+  .grid { grid-template-columns:repeat(2,1fr); gap:8px; }
+  .card-info { padding:12px 10px; }
+  .dn { font-size:15px; }
+  .ds { font-size:7px; letter-spacing:.12em; margin-bottom:0; }
+  .dcta { display:none; } /* No hover on touch */
+
+  /* Pillars */
+  .pil-grid { grid-template-columns:1fr; gap:32px; margin-top:40px; }
+  .pillar p { max-width:300px; }
+
+  /* Testimonials */
+  .testi-grid { grid-template-columns:1fr; gap:14px; }
+  .tcard { padding:26px 18px 22px; }
+  .qm { font-size:48px; margin-bottom:12px; }
+  .tcard p { font-size:13px; }
+
+  /* Newsletter */
+  .nl-form {
+    flex-direction:column; max-width:300px;
+    border:none; gap:10px;
+  }
+  .nl-input {
+    border:.5px solid rgba(201,169,110,.38);
+    padding:14px 16px; text-align:center;
+  }
+  .nl-btn { padding:14px 20px; width:100%; }
+
+  /* Footer */
+  footer { padding:40px 18px; gap:14px; }
+  .f-nav { gap:12px; }
+  .f-nav a { font-size:9px; }
+}
+
+/* Small Mobile ≤ 400px */
+@media(max-width:400px){
+  h1 { font-size:36px; }
+  .nav-logo { font-size:19px; }
+  .grid { gap:6px; }
+  .dn { font-size:13px; }
+  .card-info { padding:10px 8px; }
+  .pil-grid { gap:28px; }
+}
+
+/* Very small ≤ 320px */
+@media(max-width:320px){
+  .grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <ul class="nav-links">
+  <ul class="nav-links nav-left">
     <li><a href="#">Collection</a></li>
     <li><a href="#">Our Story</a></li>
   </ul>
   <span class="nav-logo">Esti Belle</span>
-  <ul class="nav-links">
+  <ul class="nav-links nav-right">
     <li><a href="#">Lookbook</a></li>
     <li><a href="#">Contact</a></li>
   </ul>
+  <button class="burger" id="burger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE FULL-SCREEN OVERLAY MENU -->
+<div class="mob-overlay" id="mobOverlay" role="dialog" aria-modal="true">
+  <button class="mob-close" id="mobClose" aria-label="Close menu">✕</button>
+  <a href="#" onclick="closeMenu()">Collection</a>
+  <a href="#" onclick="closeMenu()">Our Story</a>
+  <a href="#" onclick="closeMenu()">Lookbook</a>
+  <a href="#" onclick="closeMenu()">Contact</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -126,7 +336,9 @@ footer{background:var(--dark2);padding:52px 48px;display:flex;flex-direction:col
     <h1>Dressed<br>in Elegance</h1>
     <div class="divider"></div>
     <p class="hero-sub">Modest &nbsp;·&nbsp; Refined &nbsp;·&nbsp; Timeless</p>
-    <button class="btn" onclick="document.getElementById('collection').scrollIntoView({behavior:'smooth'})">Explore the Collection</button>
+    <button class="btn" onclick="document.getElementById('collection').scrollIntoView({behavior:'smooth'})">
+      Explore the Collection
+    </button>
   </div>
 </div>
 
@@ -153,8 +365,8 @@ footer{background:var(--dark2);padding:52px 48px;display:flex;flex-direction:col
   <div class="story-in">
     <span class="sl" style="text-align:center">Our Story</span>
     <h2 style="text-align:center">Where Modesty<br>Meets Magnificence</h2>
-    <div class="divider" style="margin-bottom:32px"></div>
-    <p>Esti Belle was born from a deeply personal belief — that a woman can be breathtakingly elegant without compromise. Each gown in our collection is conceived for the woman who carries her values as gracefully as she carries herself. Through fine fabrics, meticulous construction, and silhouettes that honour the feminine form, we craft pieces that endure far beyond a single occasion.</p>
+    <div class="divider" style="margin-bottom:28px"></div>
+    <p>Esti Belle was born from a deeply personal belief — that a woman can be breathtakingly elegant without compromise. Each gown is conceived for the woman who carries her values as gracefully as she carries herself. Through fine fabrics, meticulous construction, and silhouettes that honour the feminine form, we craft pieces that endure far beyond a single occasion.</p>
   </div>
 </div>
 
@@ -165,70 +377,15 @@ footer{background:var(--dark2);padding:52px 48px;display:flex;flex-direction:col
     <h2>New Season Gowns</h2>
   </div>
   <div class="grid">
-
-    <!-- 1: Chocolate ruched mermaid -->
-    <div class="card">
-      <div class="card-bg" style="background:url('./Images/WhatsApp Image 2025-12-16 at 16.29.52.jpeg') center/cover no-repeat"></div>
-      <div class="card-ov"></div>
-      <div class="card-info"><span class="dn">La Brune</span><span class="ds">Ruched Mermaid</span><span class="dcta">View Style →</span></div>
-    </div>
-
-    <!-- 2: Soft yellow chiffon -->
-    <div class="card">
-      <div class="card-bg" style="background:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37 (1).jpeg') center/cover no-repeat"></div>
-      <div class="card-ov"></div>
-      <div class="card-info"><span class="dn">Aurore</span><span class="ds">Bishop Sleeve Chiffon</span><span class="dcta">View Style →</span></div>
-    </div>
-
-    <!-- 3: Black lace + satin slit -->
-    <div class="card">
-      <div class="card-bg" style="background:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37 (2).jpeg') center/cover no-repeat"></div>
-      <div class="card-ov"></div>
-      <div class="card-info"><span class="dn">Minuit</span><span class="ds">Lace & Satin</span><span class="dcta">View Style →</span></div>
-    </div>
-
-    <!-- 4: Full black lace ruffle -->
-    <div class="card">
-      <div class="card-bg" style="background:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37.jpeg') center/cover no-repeat"></div>
-      <div class="card-ov"></div>
-      <div class="card-info"><span class="dn">Dentelle</span><span class="ds">Full Lace Cascade</span><span class="dcta">View Style →</span></div>
-    </div>
-
-    <!-- 5: Black lace top + crepe -->
-    <div class="card">
-      <div class="card-bg" style="background:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (1).jpeg') center/cover no-repeat"></div>
-      <div class="card-ov"></div>
-      <div class="card-info"><span class="dn">Mystère</span><span class="ds">Lace & Crepe</span><span class="dcta">View Style →</span></div>
-    </div>
-
-    <!-- 6: White ruffle tiered -->
-    <div class="card">
-      <div class="card-bg" style="background:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (2).jpeg') center/cover no-repeat"></div>
-      <div class="card-ov"></div>
-      <div class="card-info"><span class="dn">La Blanche</span><span class="ds">Tiered Ruffle</span><span class="dcta">View Style →</span></div>
-    </div>
-
-    <!-- 7: White structured square neck -->
-    <div class="card">
-      <div class="card-bg" style="background:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (3).jpeg') center/cover no-repeat"></div>
-      <div class="card-ov"></div>
-      <div class="card-info"><span class="dn">Neige</span><span class="ds">Structured Square Neck</span><span class="dcta">View Style →</span></div>
-    </div>
-
-    <!-- 8: Baby blue lace -->
-    <div class="card">
-      <div class="card-bg" style="background:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38.jpeg') center/cover no-repeat"></div>
-      <div class="card-ov"></div>
-      <div class="card-info"><span class="dn">Ciel</span><span class="ds">Baby Blue Lace</span><span class="dcta">View Style →</span></div>
-    </div>
-
-    <!-- 9: Blush pink lace -->
-    <div class="card">
-      <div class="card-bg" style="background:url('./Images/WhatsApp Image 2025-12-17 at 13.39.39.jpeg') center/cover no-repeat"></div>
-      <div class="card-ov"></div>
-      <div class="card-info"><span class="dn">Rose</span><span class="ds">Blush Lace A-Line</span><span class="dcta">View Style →</span></div>
-    </div>
-
+    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-16 at 16.29.52.jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">La Brune</span><span class="ds">Ruched Mermaid</span><span class="dcta">View Style →</span></div></div>
+    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37 (1).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Aurore</span><span class="ds">Bishop Sleeve</span><span class="dcta">View Style →</span></div></div>
+    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37 (2).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Minuit</span><span class="ds">Lace & Satin</span><span class="dcta">View Style →</span></div></div>
+    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37.jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Dentelle</span><span class="ds">Full Lace Cascade</span><span class="dcta">View Style →</span></div></div>
+    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (1).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Mystère</span><span class="ds">Lace & Crepe</span><span class="dcta">View Style →</span></div></div>
+    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (2).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">La Blanche</span><span class="ds">Tiered Ruffle</span><span class="dcta">View Style →</span></div></div>
+    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (3).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Neige</span><span class="ds">Square Neck</span><span class="dcta">View Style →</span></div></div>
+    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38.jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Ciel</span><span class="ds">Baby Blue Lace</span><span class="dcta">View Style →</span></div></div>
+    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.39.jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Rose</span><span class="ds">Blush Lace A-Line</span><span class="dcta">View Style →</span></div></div>
   </div>
 </div>
 
@@ -239,21 +396,9 @@ footer{background:var(--dark2);padding:52px 48px;display:flex;flex-direction:col
     <h2>Crafted with Intention</h2>
   </div>
   <div class="pil-grid">
-    <div class="pillar">
-      <div class="pil-icon">✦</div>
-      <h3>Premium Fabrics</h3>
-      <p>Every gown is crafted from the finest laces, silks, and chiffons — selected for how they move, drape, and feel.</p>
-    </div>
-    <div class="pillar">
-      <div class="pil-icon">◇</div>
-      <h3>Made to Order</h3>
-      <p>Your gown is made specifically for you. We take your measurements to ensure a fit that feels like it was always yours.</p>
-    </div>
-    <div class="pillar">
-      <div class="pil-icon">⊹</div>
-      <h3>Exclusive Designs</h3>
-      <p>Every Esti Belle piece is produced in limited quantities. When you wear one, you wear something truly rare.</p>
-    </div>
+    <div class="pillar"><div class="pil-icon">✦</div><h3>Premium Fabrics</h3><p>Every gown is crafted from the finest laces, silks, and chiffons — selected for how they move, drape, and feel.</p></div>
+    <div class="pillar"><div class="pil-icon">◇</div><h3>Made to Order</h3><p>Your gown is made specifically for you. We take your measurements to ensure a fit that feels like it was always yours.</p></div>
+    <div class="pillar"><div class="pil-icon">⊹</div><h3>Exclusive Designs</h3><p>Every Esti Belle piece is produced in limited quantities. When you wear one, you wear something truly rare.</p></div>
   </div>
 </div>
 
@@ -264,21 +409,9 @@ footer{background:var(--dark2);padding:52px 48px;display:flex;flex-direction:col
     <h2>Words of Grace</h2>
   </div>
   <div class="testi-grid">
-    <div class="tcard">
-      <span class="qm">"</span>
-      <p>I wore my Esti Belle gown to my sister's wedding and couldn't take a step without someone asking where it was from. Timeless, elegant, and perfectly modest.</p>
-      <span class="tname">— Noa R., Tel Aviv</span>
-    </div>
-    <div class="tcard">
-      <span class="qm">"</span>
-      <p>The attention to detail is extraordinary. Every stitch, every seam — you can feel the craftsmanship. I've never felt so confident and covered at the same time.</p>
-      <span class="tname">— Shira M., Jerusalem</span>
-    </div>
-    <div class="tcard">
-      <span class="qm">"</span>
-      <p>Esti Belle understands exactly what it means to dress with elegance and values. My gown was everything I dreamed of and more. I'll never shop anywhere else.</p>
-      <span class="tname">— Avital K., Ramat Gan</span>
-    </div>
+    <div class="tcard"><span class="qm">"</span><p>I wore my Esti Belle gown to my sister's wedding and couldn't take a step without someone asking where it was from. Timeless, elegant, and perfectly modest.</p><span class="tname">— Noa R., Tel Aviv</span></div>
+    <div class="tcard"><span class="qm">"</span><p>The attention to detail is extraordinary. Every stitch, every seam — you can feel the craftsmanship. I've never felt so confident and covered at the same time.</p><span class="tname">— Shira M., Jerusalem</span></div>
+    <div class="tcard"><span class="qm">"</span><p>Esti Belle understands exactly what it means to dress with elegance and values. My gown was everything I dreamed of and more.</p><span class="tname">— Avital K., Ramat Gan</span></div>
   </div>
 </div>
 
@@ -304,8 +437,35 @@ footer{background:var(--dark2);padding:52px 48px;display:flex;flex-direction:col
     <li><a href="#">Contact</a></li>
     <li><a href="#">Instagram</a></li>
   </ul>
-  <p class="f-copy">© 2025 Esti Belle. All rights reserved. &nbsp;·&nbsp; Modest Luxury Evening Wear.</p>
+  <p class="f-copy">© 2025 Esti Belle. All rights reserved. · Modest Luxury Evening Wear.</p>
 </footer>
 
+<script>
+  const burger = document.getElementById('burger');
+  const overlay = document.getElementById('mobOverlay');
+  const closeBtn = document.getElementById('mobClose');
+
+  function openMenu() {
+    burger.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    burger.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
+  closeBtn.addEventListener('click', closeMenu);
+
+  // Close overlay on outside tap
+  overlay.addEventListener('click', e => { if(e.target === overlay) closeMenu(); });
+
+  // Prevent 300ms tap delay on iOS
+  document.querySelectorAll('button, .btn, a').forEach(el => {
+    el.addEventListener('touchend', e => e.preventDefault(), {passive:false});
+  });
+</script>
 </body>
 </html>
