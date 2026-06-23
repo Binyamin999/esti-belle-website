@@ -177,8 +177,8 @@ h3 {
 
 /* Accordion sections */
 .f-sections { max-width:480px; margin:0 auto 0; }
-.f-section { border-bottom:1px solid var(--border); padding:20px 0; }
-.f-section:first-child { border-top:1px solid var(--border); }
+.f-section { padding:20px 0; }
+.f-section:first-child {}
 
 .f-section-btn {
   width:100%; background:none; border:none;
@@ -228,7 +228,7 @@ h3 {
 .f-lang-active { color:var(--black); }
 
 /* Horizontal rule */
-.f-hr { border:none; border-top:1px solid var(--border); margin:40px auto; max-width:480px; }
+.f-hr { border:none; margin:40px auto; max-width:480px; }
 
 /* Legal text */
 .f-legal-text { margin-bottom:40px; }
