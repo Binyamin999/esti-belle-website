@@ -24,7 +24,7 @@
   </button>
 </nav>
 
-<!-- MOBILE FULL-SCREEN OVERLAY MENU -->
+<!-- MOBILE OVERLAY -->
 <div class="mob-overlay" id="mobOverlay" role="dialog" aria-modal="true">
   <button class="mob-close" id="mobClose" aria-label="Close menu">✕</button>
   <a href="#" onclick="closeMenu()">Collection</a>
@@ -35,33 +35,13 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-grid"></div>
+  <div class="hero-img"></div>
   <div class="hero-c">
-    <span class="eyebrow">Luxury Evening Wear · Est. 2024</span>
     <h1>Dressed<br>in Elegance</h1>
-    <div class="divider"></div>
-    <p class="hero-sub">Modest &nbsp;·&nbsp; Refined &nbsp;·&nbsp; Timeless</p>
+    <p class="hero-sub">Modest · Refined · Timeless</p>
     <button class="btn" onclick="document.getElementById('collection').scrollIntoView({behavior:'smooth'})">
       Explore the Collection
     </button>
-  </div>
-</div>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ti">Handcrafted</span><span class="ti">·</span>
-    <span class="ti">Modest Luxury</span><span class="ti">·</span>
-    <span class="ti">Made to Order</span><span class="ti">·</span>
-    <span class="ti">Timeless Elegance</span><span class="ti">·</span>
-    <span class="ti">Exclusive Designs</span><span class="ti">·</span>
-    <span class="ti">Bespoke Fit</span><span class="ti">·</span>
-    <span class="ti">Handcrafted</span><span class="ti">·</span>
-    <span class="ti">Modest Luxury</span><span class="ti">·</span>
-    <span class="ti">Made to Order</span><span class="ti">·</span>
-    <span class="ti">Timeless Elegance</span><span class="ti">·</span>
-    <span class="ti">Exclusive Designs</span><span class="ti">·</span>
-    <span class="ti">Bespoke Fit</span><span class="ti">·</span>
   </div>
 </div>
 
@@ -70,7 +50,6 @@
   <div class="story-in">
     <span class="sl">Our Story</span>
     <h2>Where Modesty<br>Meets Magnificence</h2>
-    <div class="divider"></div>
     <p>Esti Belle was born from a deeply personal belief — that a woman can be breathtakingly elegant without compromise. Each gown is conceived for the woman who carries her values as gracefully as she carries herself. Through fine fabrics, meticulous construction, and silhouettes that honour the feminine form, we craft pieces that endure far beyond a single occasion.</p>
   </div>
 </div>
@@ -82,15 +61,42 @@
     <h2>New Season Gowns</h2>
   </div>
   <div class="grid">
-    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-16 at 16.29.52.jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">La Brune</span><span class="ds">Ruched Mermaid</span><span class="dcta">View Style →</span></div></div>
-    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37 (1).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Aurore</span><span class="ds">Bishop Sleeve</span><span class="dcta">View Style →</span></div></div>
-    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37 (2).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Minuit</span><span class="ds">Lace & Satin</span><span class="dcta">View Style →</span></div></div>
-    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37.jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Dentelle</span><span class="ds">Full Lace Cascade</span><span class="dcta">View Style →</span></div></div>
-    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (1).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Mystère</span><span class="ds">Lace & Crepe</span><span class="dcta">View Style →</span></div></div>
-    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (2).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">La Blanche</span><span class="ds">Tiered Ruffle</span><span class="dcta">View Style →</span></div></div>
-    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (3).jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Neige</span><span class="ds">Square Neck</span><span class="dcta">View Style →</span></div></div>
-    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38.jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Ciel</span><span class="ds">Baby Blue Lace</span><span class="dcta">View Style →</span></div></div>
-    <div class="card"><div class="card-bg" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.39.jpeg')"></div><div class="card-ov"></div><div class="card-info"><span class="dn">Rose</span><span class="ds">Blush Lace A-Line</span><span class="dcta">View Style →</span></div></div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('./Images/WhatsApp Image 2025-12-16 at 16.29.52.jpeg')"></div>
+      <div class="card-info"><span class="dn">La Brune</span></div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37 (1).jpeg')"></div>
+      <div class="card-info"><span class="dn">Aurore</span></div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37 (2).jpeg')"></div>
+      <div class="card-info"><span class="dn">Minuit</span></div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.37.jpeg')"></div>
+      <div class="card-info"><span class="dn">Dentelle</span></div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (1).jpeg')"></div>
+      <div class="card-info"><span class="dn">Mystère</span></div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (2).jpeg')"></div>
+      <div class="card-info"><span class="dn">La Blanche</span></div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38 (3).jpeg')"></div>
+      <div class="card-info"><span class="dn">Neige</span></div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.38.jpeg')"></div>
+      <div class="card-info"><span class="dn">Ciel</span></div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background-image:url('./Images/WhatsApp Image 2025-12-17 at 13.39.39.jpeg')"></div>
+      <div class="card-info"><span class="dn">Rose</span></div>
+    </div>
   </div>
 </div>
 
@@ -101,9 +107,18 @@
     <h2>Crafted with Intention</h2>
   </div>
   <div class="pil-grid">
-    <div class="pillar"><div class="pil-icon">✦</div><h3>Premium Fabrics</h3><p>Every gown is crafted from the finest laces, silks, and chiffons — selected for how they move, drape, and feel.</p></div>
-    <div class="pillar"><div class="pil-icon">◇</div><h3>Made to Order</h3><p>Your gown is made specifically for you. We take your measurements to ensure a fit that feels like it was always yours.</p></div>
-    <div class="pillar"><div class="pil-icon">⊹</div><h3>Exclusive Designs</h3><p>Every Esti Belle piece is produced in limited quantities. When you wear one, you wear something truly rare.</p></div>
+    <div class="pillar">
+      <h3>Premium Fabrics</h3>
+      <p>Every gown is crafted from the finest laces, silks, and chiffons — selected for how they move, drape, and feel.</p>
+    </div>
+    <div class="pillar">
+      <h3>Made to Order</h3>
+      <p>Your gown is made specifically for you. We take your measurements to ensure a fit that feels like it was always yours.</p>
+    </div>
+    <div class="pillar">
+      <h3>Exclusive Designs</h3>
+      <p>Every Esti Belle piece is produced in limited quantities. When you wear one, you wear something truly rare.</p>
+    </div>
   </div>
 </div>
 
@@ -114,35 +129,97 @@
     <h2>Words of Grace</h2>
   </div>
   <div class="testi-grid">
-    <div class="tcard"><span class="qm">"</span><p>I wore my Esti Belle gown to my sister's wedding and couldn't take a step without someone asking where it was from. Timeless, elegant, and perfectly modest.</p><span class="tname">— Noa R., Tel Aviv</span></div>
-    <div class="tcard"><span class="qm">"</span><p>The attention to detail is extraordinary. Every stitch, every seam — you can feel the craftsmanship. I've never felt so confident and covered at the same time.</p><span class="tname">— Shira M., Jerusalem</span></div>
-    <div class="tcard"><span class="qm">"</span><p>Esti Belle understands exactly what it means to dress with elegance and values. My gown was everything I dreamed of and more.</p><span class="tname">— Avital K., Ramat Gan</span></div>
-  </div>
-</div>
-
-<!-- NEWSLETTER -->
-<div class="sec nl">
-  <span class="sl">Stay Connected</span>
-  <h2>Enter the World<br>of Esti Belle</h2>
-  <p class="nl-sub">Be the first to discover new collections, exclusive previews, and private events.</p>
-  <div class="nl-form">
-    <input class="nl-input" type="email" placeholder="Your email address" />
-    <button class="nl-btn">Subscribe</button>
+    <div class="tcard">
+      <p>I wore my Esti Belle gown to my sister's wedding and couldn't take a step without someone asking where it was from. Timeless, elegant, and perfectly modest.</p>
+      <span class="tname">— Noa R., Tel Aviv</span>
+    </div>
+    <div class="tcard">
+      <p>The attention to detail is extraordinary. Every stitch, every seam — you can feel the craftsmanship. I've never felt so confident and covered at the same time.</p>
+      <span class="tname">— Shira M., Jerusalem</span>
+    </div>
+    <div class="tcard">
+      <p>Esti Belle understands exactly what it means to dress with elegance and values. My gown was everything I dreamed of and more.</p>
+      <span class="tname">— Avital K., Ramat Gan</span>
+    </div>
   </div>
 </div>
 
 <!-- FOOTER -->
-<footer>
-  <span class="f-logo">Esti Belle</span>
-  <div class="f-line"></div>
-  <ul class="f-nav">
-    <li><a href="#">Collection</a></li>
-    <li><a href="#">Our Story</a></li>
-    <li><a href="#">Lookbook</a></li>
-    <li><a href="#">Contact</a></li>
-    <li><a href="#">Instagram</a></li>
-  </ul>
-  <p class="f-copy">© 2025 Esti Belle. All rights reserved. · Modest Luxury Evening Wear.</p>
+<footer class="site-footer">
+
+  <!-- Accordion sections -->
+  <div class="f-sections">
+
+    <div class="f-section">
+      <button class="f-section-btn" aria-expanded="false" aria-controls="f-join">
+        Join Esti Belle
+      </button>
+      <ul class="f-section-content" id="f-join">
+        <li><a href="#">Download our app</a></li>
+        <li><a href="#">Sign up to newsletter</a></li>
+      </ul>
+    </div>
+
+    <div class="f-section">
+      <button class="f-section-btn" aria-expanded="false" aria-controls="f-social">
+        Social
+      </button>
+      <div class="f-section-content f-social" id="f-social">
+        <a href="#">Instagram</a>
+        <a href="#">Tik Tok</a>
+        <a href="#">Facebook</a>
+        <a href="#">Pinterest</a>
+        <a href="#">YouTube</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="f-section">
+      <button class="f-section-btn" aria-expanded="false" aria-controls="f-company">
+        Company
+      </button>
+      <ul class="f-section-content" id="f-company">
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Store locator</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Join our team</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Country/Region -->
+  <div class="f-country">
+    <span class="f-country-label">Change Country/Region</span>
+    <button class="f-country-btn">Israel (₪)</button>
+  </div>
+
+  <!-- Language toggle -->
+  <div class="f-lang">
+    <button class="f-lang-btn f-lang-active">HE</button>
+    <button class="f-lang-btn">EN</button>
+  </div>
+
+  <hr class="f-hr">
+
+  <!-- Legal text -->
+  <div class="f-legal-text">
+    <p>Esti Belle Fashion Ltd. · 1 Fashion Street, Tel Aviv · Reg. No. 123456789</p>
+    <p><a href="#">Cancel order</a></p>
+  </div>
+
+  <!-- Brand wordmark -->
+  <div class="f-wordmark">Esti Belle</div>
+
+  <!-- Newsletter -->
+  <div class="f-nl">
+    <p>Sign up to our newsletter and we'll send you news about new products and trends.</p>
+    <div class="f-nl-links">
+      <a href="#">Subscribe</a>
+      <a href="#">Unsubscribe</a>
+    </div>
+  </div>
+
 </footer>
 
 <script>
@@ -163,13 +240,15 @@
 
   burger.addEventListener('click', () => overlay.classList.contains('open') ? closeMenu() : openMenu());
   closeBtn.addEventListener('click', closeMenu);
-
-  // Close overlay on outside tap
   overlay.addEventListener('click', e => { if(e.target === overlay) closeMenu(); });
 
-  // Prevent 300ms tap delay on iOS
-  document.querySelectorAll('button, .btn, a').forEach(el => {
-    el.addEventListener('touchend', e => e.preventDefault(), {passive:false});
+  // Footer accordion — all screen sizes
+  document.querySelectorAll('.f-section-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!expanded));
+      document.getElementById(this.getAttribute('aria-controls')).classList.toggle('is-open', !expanded);
+    });
   });
 </script>
 </body>
